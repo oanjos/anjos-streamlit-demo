@@ -1,8 +1,16 @@
-import base64
+import sys
+import subprocess
+import pkgutil
+
+# Garante que o plotly está instalado, mesmo que o ambiente do Streamlit Cloud ignore o requirements.txt
+if pkgutil.find_loader("plotly") is None:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import base64
 from streamlit import column_config 
 
 
@@ -336,11 +344,6 @@ with st.container():
     c1, c2, c3 = st.columns(3)
 
     with c1:
-      #  st.markdown(
-      #      '<div class="anjos-inner-card"><div class="anjos-section-title">RECEITA MENSAL</div>',
-      #      unsafe_allow_html=True
-      #  )
-
         if not df_mes.empty:
             fig_receita = px.bar(
                 df_mes,
@@ -366,10 +369,6 @@ with st.container():
         st.markdown('</div>', unsafe_allow_html=True)
 
     with c2:
-      #  st.markdown(
-      #      '<div class="anjos-inner-card"><div class="anjos-section-title">MARGEM BRUTA MENSAL</div>',
-      #      unsafe_allow_html=True
-      #  )
         if not df_mes.empty:
             fig_margem = px.bar(
                 df_mes,
@@ -395,10 +394,6 @@ with st.container():
         st.markdown('</div>', unsafe_allow_html=True)
 
     with c3:
-     #   st.markdown(
-     #       '<div class="anjos-inner-card"><div class="anjos-section-title">%¨MARGEM BRUTA MENSAL</div>',
-     #       unsafe_allow_html=True
-     #   )
         if not df_mes.empty:
             df_mes_pct = df_mes.copy()
             df_mes_pct["MargemPct"] = df_mes_pct["MargemPct"].fillna(0)
