@@ -1,0 +1,14 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Mac/Linux
+.DS_Store
+
+# Streamlit
+__pycache__/
+*.pyc
+
+# Arquivos grandes
+*.xlsx
