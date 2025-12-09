@@ -1,8 +1,18 @@
+import base64
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
 from streamlit import column_config 
+
+
+def load_logo_base64(path: str) -> str:
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
+
+# ajuste o nome do arquivo se for diferente
+LOGO_TOP_BASE64 = load_logo_base64("Logotipo_Anjos_do_BI_branco.PNG")
+
 
 # ===================== CONFIG PÁGINA =====================
 st.set_page_config(
@@ -47,12 +57,28 @@ html, body, [class*="css"] {
     background-color: #E5E7EB;
 }
 
-/* Top bar escura */
+/* Barra superior */
 .anjos-top-bar {
     background: linear-gradient(90deg, #020617, #0F172A);
     color: #E5E7EB;
     padding: 1.2rem 2.2rem 1.4rem 2.2rem;
     border-radius: 0 0 1.5rem 1.5rem;
+
+    position: relative;   /* necessário para posicionar o logo internamente */
+    height: 80px;         /* <<< altura fixa da barra */
+    display: flex;
+    align-items: center;
+}
+
+/* Logo grande sem afetar a altura da barra */
+.anjos-top-logo {
+    height: 200px;          /* Aumente aqui – pode colocar 200px, 250px etc */
+    position: absolute;
+    right: 25px;            /* distancia da borda direita */
+    top: 50%;
+    transform: translateY(-50%);  /* centraliza verticalmente */
+    object-fit: contain;
+    pointer-events: none;   /* evita bloquear clicks na barra */
 }
 
 /* Título */
@@ -269,9 +295,10 @@ df_equipe["MargemPct"] = np.where(
 top_container = st.container()
 with top_container:
     st.markdown(
-        """
+        f"""
         <div class="anjos-top-bar">
             <div class="anjos-top-title">RECEITA × CUSTOS × MARGEM</div>
+            <img src="data:image/png;base64,{LOGO_TOP_BASE64}" class="anjos-top-logo" />
         </div>
         """,
         unsafe_allow_html=True,
