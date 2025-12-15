@@ -1,11 +1,3 @@
-import sys
-import subprocess
-import pkgutil
-
-# Garante que o plotly está instalado, mesmo que o ambiente do Streamlit Cloud ignore o requirements.txt
-if pkgutil.find_loader("plotly") is None:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly"])
-
 import streamlit as st
 import pandas as pd
 import numpy as np
