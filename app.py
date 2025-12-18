@@ -18,8 +18,10 @@ LOGO_TOP_BASE64 = load_logo_base64("Logotipo_Anjos_do_BI_branco.PNG")
 st.set_page_config(
     page_title="Anjos do BI - Receita x Custos x Margem",
     page_icon="🪽",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
+
 
 # ===================== CSS PARA LEMBRAR O POWER BI =====================
 css = """
@@ -157,9 +159,13 @@ html, body, [class*="css"] {
     padding: 0.9rem 1rem 1rem 1rem;
     border: 1px solid #E5E7EB;
 }
+
+/* Troca a seta do toggle da sidebar pelos ícones de filtro */
 </style>
 """
 st.markdown(css, unsafe_allow_html=True)
+
+# CSS para substituir as setas do sidebar pelos ícones fornecidos
 
 # ===================== CARGA DOS DADOS =====================
 @st.cache_data
