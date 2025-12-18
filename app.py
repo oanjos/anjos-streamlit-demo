@@ -352,8 +352,16 @@ with st.container():
             )
             fig_receita.update_layout(
                 margin=dict(l=0, r=0, t=10, b=0),
+                height=350,
                 bargap=0.05,  # barras mais grossas
-                xaxis=dict(showgrid=False, showline=False),
+                xaxis=dict(
+                    showgrid=False,
+                    showline=False,
+                    tickangle=-45,
+                    tickmode="array",
+                    tickvals=df_mes["AnoMes"],
+                    tickformat="%b %Y",
+                ),
                 yaxis=dict(showgrid=True, gridcolor="#E5E7EB"),
                 plot_bgcolor="rgba(0,0,0,0)",
                 paper_bgcolor="rgba(0,0,0,0)",
@@ -377,8 +385,16 @@ with st.container():
             )
             fig_margem.update_layout(
                 margin=dict(l=0, r=0, t=10, b=0),
+                height=350,
                 bargap=0.05,
-                xaxis=dict(showgrid=False, showline=False),
+                xaxis=dict(
+                    showgrid=False,
+                    showline=False,
+                    tickangle=-45,
+                    tickmode="array",
+                    tickvals=df_mes["AnoMes"],
+                    tickformat="%b %Y",
+                ),
                 yaxis=dict(showgrid=True, gridcolor="#E5E7EB"),
                 plot_bgcolor="rgba(0,0,0,0)",
                 paper_bgcolor="rgba(0,0,0,0)",
@@ -405,8 +421,16 @@ with st.container():
             )
             fig_margem_pct.update_layout(
                 margin=dict(l=0, r=0, t=10, b=0),
+                height=350,
                 bargap=0.05,
-                xaxis=dict(showgrid=False, showline=False),
+                xaxis=dict(
+                    showgrid=False,
+                    showline=False,
+                    tickangle=-45,
+                    tickmode="array",
+                    tickvals=df_mes_pct["AnoMes"],
+                    tickformat="%b %Y",
+                ),
                 yaxis=dict(showgrid=True, gridcolor="#E5E7EB", tickformat=".0%"),
                 plot_bgcolor="rgba(0,0,0,0)",
                 paper_bgcolor="rgba(0,0,0,0)",
